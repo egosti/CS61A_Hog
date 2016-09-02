@@ -162,31 +162,6 @@ def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
 
 
 
-
-
-
-
-
-    # strategies = [strategy0,strategy1]
-    # scores = [score0,score1]
-    # while scores[0] < goal and scores[1] < goal:
-    #     dice = select_dice(scores[player], scores[other(player)], dice_swapped)
-    #     roll = strategies[player](scores[player],scores[other(player)])
-    #     if roll == -1:
-    #         scores[player] += 1
-    #         dice_swapped = not dice_swapped
-    #     else:
-    #         scores[player] += take_turn(roll,scores[other(player)],dice)
-    #     if scores[0] * 2 == scores[1] or scores[1] * 2 == scores[0]:
-    #         temp = scores[0]
-    #         scores[0] = scores[1]
-    #         scores[1] = temp
-    #     player = other(player)
-    # # END PROBLEM 5
-    # return scores[0], scores[1]
-
-
-
 #######################
 # Phase 2: Strategies #
 #######################
