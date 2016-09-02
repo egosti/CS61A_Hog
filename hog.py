@@ -332,12 +332,8 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     and rolls NUM_ROLLS otherwise.
     """
     # BEGIN PROBLEM 9
-    bacon = free_bacon(opponent_score)
-    if is_prime(bacon):
-        bacon = next_prime(bacon)
-    if bacon >= margin:
-        return 0
-    return num_rolls
+    "*** REPLACE THIS LINE ***"
+    return 4  # Replace this statement
     # END PROBLEM 9
 check_strategy(bacon_strategy)
 
@@ -348,8 +344,15 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     NUM_ROLLS.
     """
     # BEGIN PROBLEM 10
-    "*** REPLACE THIS LINE ***"
-    return 4  # Replace this statement
+    if bacon_strategy(score, opponent_score, margin, num_rolls) == 0:
+        return 0
+    bacon = free_bacon(opponent_score)
+    if is_prime(bacon):
+        bacon = next_prime(bacon)
+    score += bacon
+    if 2 * score == opponent_score:
+        return 0
+    return num_rolls  # Replace this statement
     # END PROBLEM 10
 check_strategy(swap_strategy)
 
