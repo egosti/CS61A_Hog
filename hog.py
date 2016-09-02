@@ -278,6 +278,11 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     """
     # BEGIN PROBLEM 8
     "*** REPLACE THIS LINE ***"
+    list = []
+    for i in range(1, 11):
+        average = make_averaged(roll_dice, num_samples)
+        list.append(average(i, dice))
+    return list.index(max(list)) + 1
     # END PROBLEM 8
 
 
