@@ -236,6 +236,10 @@ def check_strategy(strategy, goal=GOAL_SCORE):
     """
     # BEGIN PROBLEM 6
     "*** REPLACE THIS LINE ***"
+    for i in range(0, goal):
+        for j in range(0, goal):
+            check_strategy_roll(i, j, strategy(i, j))
+    return None
     # END PROBLEM 6
 
 
