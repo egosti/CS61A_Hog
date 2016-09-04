@@ -376,6 +376,21 @@ def final_strategy(score, opponent_score):
         margin = 8
     num_rolls = swap_strategy(score, opponent_score, margin, n)
     return num_rolls  # Replace this statement
+    """or
+    
+    # BEGIN PROBLEM 11
+    #if score > opponent_score:
+     #   return -1
+    #elif score < opponent_score and pork_chopped == True
+    n = 5
+    margin = 8
+    if score > opponent_score:
+        num_rolls = swap_strategy(score, opponent_score, margin, n)
+        return num_rolls  # Replace this statement
+    strategy = always_roll(5)
+    return strategy(score, opponent_score)
+    # END PROBLEM 11
+check_strategy(final_strategy)"""
     # END PROBLEM 11
 check_strategy(final_strategy)
 
