@@ -19,15 +19,14 @@ def roll_dice(num_rolls, dice=six_sided):
     assert type(num_rolls) == int, 'num_rolls must be an integer.'
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
-    #!!!roll_dice(1, counted_dice) for 4,1,2,6 is 6 for some reason
-    points, count_ones = 0, False
+    points, counting_ones = 0, False
     for i in range(num_rolls):
         roll = dice()
-        if count_ones and roll == 1:
+        if counting_ones and roll == 1:
             points += 1
         elif roll == 1:
-            points, count_ones = 1, True
-        elif not count_ones:
+            points, counting_ones = 1, True
+        elif not counting_ones:
             points += roll
     return points
     # END PROBLEM 1
@@ -79,9 +78,7 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
         turn_score = roll_dice(num_rolls,dice)
     if is_prime(turn_score):
         turn_score = next_prime(turn_score)
-    if turn_score > max_score:
-        turn_score = max_score
-    return turn_score
+    return min(turn_score, max_score)
 
     # END PROBLEM 2
 
@@ -90,10 +87,10 @@ def reroll(dice):
     """Return dice that return even outcomes and re-roll odd outcomes of DICE."""
     def rerolled():
         # BEGIN PROBLEM 3
-        roll = dice()
-        if roll % 2 == 0:
-            return roll
-        return dice()  # Replace this statement
+        roll_points = dice()
+        if roll_points % 2 == 0:
+            return roll_points
+        return dice()
         # END PROBLEM 3
     return rerolled
 
@@ -108,7 +105,7 @@ def select_dice(score, opponent_score, dice_swapped):
     if dice_swapped:
         dice = four_sided
     else:
-        dice = six_sided  # Replace this statement
+        dice = six_sided
     # END PROBLEM 4
     if (score + opponent_score) % 7 == 0:
         dice = reroll(dice)
@@ -235,11 +232,9 @@ def check_strategy(strategy, goal=GOAL_SCORE):
     AssertionError: strategy(102, 115) returned 100 (invalid number of rolls)
     """
     # BEGIN PROBLEM 6
-    "*** REPLACE THIS LINE ***"
     for i in range(0, goal):
         for j in range(0, goal):
             check_strategy_roll(i, j, strategy(i, j))
-    return None
     # END PROBLEM 6
 
 
@@ -258,10 +253,9 @@ def make_averaged(fn, num_samples=1000):
     """
     # BEGIN PROBLEM 7
     def average_fn(*args):
-        sum, n = 0, num_samples
-        while n > 0:
+        sum = 0
+        for i in range(num_samples):
             sum += fn(*args)
-            n -= 1
         return sum / num_samples
     return average_fn
     # END PROBLEM 7
@@ -277,11 +271,10 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     10
     """
     # BEGIN PROBLEM 8
-    "*** REPLACE THIS LINE ***"
     list = []
     for i in range(1, 11):
-        average = make_averaged(roll_dice, num_samples)
-        list.append(average(i, dice))
+        average_points = make_averaged(roll_dice, num_samples)
+        list.append(average_points(i, dice))
     return list.index(max(list)) + 1
     # END PROBLEM 8
 
@@ -307,7 +300,7 @@ def average_win_rate(strategy, baseline=always_roll(4)):
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
-    if True:  # Change to False when done finding max_scoring_num_rolls
+    if False:  # Change to False when done finding max_scoring_num_rolls
         six_sided_max = max_scoring_num_rolls(six_sided)
         print('Max scoring num rolls for six-sided dice:', six_sided_max)
         rerolled_max = max_scoring_num_rolls(reroll(six_sided))
@@ -356,21 +349,21 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     score += bacon
     if 2 * score == opponent_score:
         return 0
-    return num_rolls  # Replace this statement
+    return num_rolls
     # END PROBLEM 10
 check_strategy(swap_strategy)
 
 
 def final_strategy(score, opponent_score):
     """
-Sets default margin and number of rolls to 5, which gives a high average of points per turn.
-Then uses pork chop to play all the games with 4-sided dice, making other always_roll(4) likely to pig out.
-When player is winning or losing by certain amounts, change margins accordingly to maximize chances of winning.
-When player is over 90 points, play conservatively and roll 3 times.
+    Sets default margin and number of rolls to 5, which gives a high average of points per turn.
+    Then uses pork chop to play all the games with 4-sided dice, making other always_roll(4) likely to pig out.
+    When player is winning or losing by certain amounts, change margins accordingly to maximize chances of winning.
+    When player is over 90 points, play conservatively and roll 3 times.
 
     """
     # BEGIN PROBLEM 11
-    
+
     n = 5
     margin = 5
     if score == 0:
