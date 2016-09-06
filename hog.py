@@ -364,7 +364,7 @@ check_strategy(swap_strategy)
 def final_strategy(score, opponent_score):
     """Write a brief description of your final strategy.
 
-    *** YOUR DESCRIPTION HERE ***
+
     """
     # BEGIN PROBLEM 11
     
