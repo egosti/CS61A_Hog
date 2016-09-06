@@ -367,30 +367,21 @@ def final_strategy(score, opponent_score):
     *** YOUR DESCRIPTION HERE ***
     """
     # BEGIN PROBLEM 11
-    "*** REPLACE THIS LINE ***" #six-sided, four-sided
-    n = max_scoring_num_rolls()
-    margin = 5
-    if score > opponent_score:
-        margin = 5
-    else:
-        margin = 8
-    num_rolls = swap_strategy(score, opponent_score, margin, n)
-    return num_rolls  # Replace this statement
-    """or
     
-    # BEGIN PROBLEM 11
-    #if score > opponent_score:
-     #   return -1
-    #elif score < opponent_score and pork_chopped == True
     n = 5
-    margin = 8
+    margin = 5
+    if score == 0:
+        return -1
     if score > opponent_score:
-        num_rolls = swap_strategy(score, opponent_score, margin, n)
-        return num_rolls  # Replace this statement
-    strategy = always_roll(5)
-    return strategy(score, opponent_score)
-    # END PROBLEM 11
-check_strategy(final_strategy)"""
+        margin = 4
+    if score > opponent_score + 10:
+        margin = 6
+    if score < opponent_score - 10:
+        margin = 8
+    if score > 90:
+        n = 3
+    return swap_strategy(score, opponent_score, margin, n)
+
     # END PROBLEM 11
 check_strategy(final_strategy)
 
