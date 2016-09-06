@@ -362,8 +362,11 @@ check_strategy(swap_strategy)
 
 
 def final_strategy(score, opponent_score):
-    """Write a brief description of your final strategy.
-
+    """
+Sets default margin and number of rolls to 5, which gives a high average of points per turn.
+Then uses pork chop to play all the games with 4-sided dice, making other always_roll(4) likely to pig out.
+When player is winning or losing by certain amounts, change margins accordingly to maximize chances of winning.
+When player is over 90 points, play conservatively and roll 3 times.
 
     """
     # BEGIN PROBLEM 11
